@@ -4,7 +4,10 @@ import Vue from 'vue/dist/vue.js'
 import VueRouter from 'vue-router'
 import app from './app.vue'
 import routerObj from "./router.js"
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
+Vue.use(VueAxios,axios)
 Vue.use(VueRouter)
 
 let vm = new Vue({
