@@ -7,9 +7,9 @@
         </mt-swipe>
         <div class="mui-content">
             <ul class="mui-table-view mui-grid-view mui-grid-9">
-                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newlist">
                     <span class="mui-icon mui-icon-home"></span>
-                    <div class="mui-media-body">新闻资讯</div></a></li>
+                    <div class="mui-media-body">新闻资讯</div></router-link></li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
                     <div class="mui-media-body">图片分享</div></a></li>
@@ -41,11 +41,11 @@
       },
       methods: {
         /*getdata() {
-          this.axios.get("https://easy-mock.com/mock/5b6127a76551d73d713927c4/").then(result => {
-            console.log(result.body)
+          this.axios.get("http://www.liulongbin.top:3005/api/getprodlist").then(result => {
+            console.log(result)
           })
         }*/
-      }
+      },
     }
 </script>
 <style scoped>

@@ -46,6 +46,7 @@
 <style scoped>
     .app-container{
         padding-top: 40px;
+        padding-bottom: 45px;
     }
     .v-enter {
         opacity: 0;

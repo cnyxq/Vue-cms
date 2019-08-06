@@ -1,16 +1,20 @@
 import VueRouter from 'vue-router'
-import home from './components/home.vue'
-import vip from './components/vip.vue'
-import shopcar from './components/shopcar.vue'
-import search from './components/search.vue'
+import home from './components/tabbar/home.vue'
+import vip from './components/tabbar/vip.vue'
+import shopCar from './components/tabbar/shopcar.vue'
+import search from './components/tabbar/search.vue'
+import newList from "./components/news/newlist.vue"
+import newsInfo from "./components/news/newsinfo.vue"
 
 let routerObj = new VueRouter({
   routes: [
-    {path: '/',redirect: '/home'},
-    {path: '/home',component: home},
-    {path: '/vip',component: vip},
-    {path: '/shopcar',component: shopcar},
-    {path: '/search',component: search},
+    { path: '/',redirect: '/home' },
+    { path: '/home',component: home },
+    { path: '/vip',component: vip },
+    { path: '/shopcar',component: shopCar },
+    { path: '/search',component: search },
+    { path: '/home/newlist',component: newList },
+    { path: '/home/newlist/newsinfo/:id',component: newsInfo },
   ],
   linkActiveClass: 'mui-active'//覆盖默认的路由高亮的类，默认的类叫做router-link-active
 })
