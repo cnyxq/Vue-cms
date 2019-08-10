@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <!--header-->
-        <mt-header fixed title="Vue-cms">
+        <mt-header fixed title="Vue-cms" class="header">
             <router-link to="/" slot="left">
                 <mt-button icon="back"></mt-button>
             </router-link>
@@ -47,6 +47,9 @@
     .app-container{
         padding-top: 40px;
         padding-bottom: 45px;
+    }
+    .header{
+        z-index: 9999;
     }
     .v-enter {
         opacity: 0;
