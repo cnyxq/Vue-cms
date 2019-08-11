@@ -20,13 +20,14 @@
           newsInfo: {}
         }
       },
-      created (){},
+      created (){
+        this.getdata()
+      },
       mounted (){
 
         /*PubSub.subscribe('newList',(mes,newList) => {
           this.newList = newList
         })*/
-        this.getdata()
       },
       methods: {
         getdata(){

@@ -33,12 +33,6 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue/dist/vue.js'
-    import MintUI from 'mint-ui'
-    import 'mint-ui/lib/style.css'
-    import './lib/mui/css/mui.css'
-    import './lib/mui/css/icons-extra.css'
-    Vue.use(MintUI)
     export default {
 
     }
@@ -49,7 +43,7 @@
         padding-bottom: 45px;
     }
     .header{
-        z-index: 9999;
+        z-index: 99;
     }
     .v-enter {
         opacity: 0;
