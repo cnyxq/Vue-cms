@@ -5,9 +5,10 @@ import shopCar from './components/tabbar/shopcar.vue'
 import search from './components/tabbar/search.vue'
 import newList from "./components/news/newlist.vue"
 import newsInfo from "./components/news/newsinfo.vue"
-import photolist from "./components/photos/photolist.vue"
-import photoinfo from "./components/photos/photoinfo.vue"
-import goodslist from "./components/goods/goodslist.vue";
+import photoList from "./components/photos/photolist.vue"
+import photoInfo from "./components/photos/photoinfo.vue"
+import goodsList from "./components/goods/goodslist.vue";
+import goodsInfo from "./components/goods/goodsinfo.vue";
 
 let routerObj = new VueRouter({
   routes: [
@@ -18,9 +19,10 @@ let routerObj = new VueRouter({
     { path: '/search',component: search },
     { path: '/home/newlist',component: newList },
     { path: '/home/newlist/newsinfo/:id',component: newsInfo },
-    { path: '/home/photolist',component: photolist},
-    { path: '/home/photoinfo/:id',component: photoinfo},
-    { path: '/home/goodslist',component: goodslist},
+    { path: '/home/photolist',component: photoList},
+    { path: '/home/photoinfo/:id',component: photoInfo},
+    { path: '/home/goodslist',component: goodsList},
+    { path: '/home/goodsinfo/:id',component: goodsInfo},
   ],
   linkActiveClass: 'mui-active'//覆盖默认的路由高亮的类，默认的类叫做router-link-active
 })
