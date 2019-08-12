@@ -3,7 +3,8 @@
         <!--header-->
         <mt-header fixed title="Vue-cms" class="header">
             <router-link to="/" slot="left">
-                <mt-button icon="back"></mt-button>
+                <!--<mt-button icon="back"></mt-button>-->
+                <mt-button icon="back" @click="back"></mt-button>
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
@@ -34,7 +35,16 @@
 </template>
 <script>
     export default {
+      data() {
+        return {
 
+        }
+      },
+      methods: {
+        back(){
+          this.$router.go(-1)
+        }
+      }
     }
 </script>
 <style scoped>
