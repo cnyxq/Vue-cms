@@ -20,10 +20,10 @@
                         销售价：<span class="sell">{{goodsInfo.sell_price}}</span>
                     </div>
                     <p class="num">购买数量：</p>
-                    <numbox></numbox>
+                    <numbox @getSelectCount="getSelectCount" :stockQuantity="goodsInfo.stock_quantity"></numbox>
                     <div class="button">
                         <mt-button type="primary">立即购买</mt-button>
-                        <mt-button type="danger">加入购物车</mt-button>
+                        <mt-button type="danger" @click="getSelectCount">加入购物车</mt-button>
                     </div>
                 </div>
             </div>
@@ -53,6 +53,7 @@
           id: this.$route.params.id,
           imageList: [],
           goodsInfo: {},
+          selectCount: 1,
         }
       },
       created() {
@@ -80,6 +81,9 @@
               Toast("获取数据失败！")
             }
           })
+        },
+        getSelectCount(count) {
+          this.selectCount = count
         },
         goGoodsDesc(id) {
           this.$router.push({name: 'goodsDesc',params: { id }})//程序化导航
