@@ -84,6 +84,7 @@
         },
         getSelectCount(count) {
           this.selectCount = count
+          /*this.$store.commit('increment',this.selectCount)*/
         },
         goGoodsDesc(id) {
           this.$router.push({name: 'goodsDesc',params: { id }})//程序化导航

@@ -36,20 +36,22 @@ import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
 //导入vuex
-import vuex from 'vuex'
-Vue.use(vuex)
+/*import Vuex from 'vuex'
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-
+    count1: 0
   },
   mutations: {
-
+    increment(state,num) {
+      state.count += num
+    }
   },
   getters: {
 
   }
-})
+})*/
 
 let vm = new Vue({
   el: '#app',
