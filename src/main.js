@@ -35,6 +35,22 @@ Vue.filter('dateFormat',function (dataStr,pattern = "YYYY-MM-DD HH:mm:ss") {
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
+//导入vuex
+import vuex from 'vuex'
+Vue.use(vuex)
+
+const store = new Vuex.Store({
+  state: {
+
+  },
+  mutations: {
+
+  },
+  getters: {
+
+  }
+})
+
 let vm = new Vue({
   el: '#app',
   data: {},
