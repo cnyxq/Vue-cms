@@ -1,7 +1,7 @@
 <template>
     <div class="mui-numbox" data-numbox-min='1'>
         <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-        <input class="mui-input-numbox" type="number" value="1" ref="numbox" @change="changeCount">
+        <input class="mui-input-numbox" type="number" @change="changeCount">
         <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
     </div>
 </template>
@@ -13,12 +13,15 @@
 
         }
       },
+      created() {
+
+      },
       mounted() {
         mui(".mui-numbox").numbox()
       },
       methods: {
         changeCount() {
-          this.$emit('getSelectCount',this.$refs.numbox.value)//将子组件的数据传递给父组件
+          this.$emit('getSelectCount',mui(".mui-numbox").numbox().getValue())//将子组件的数据传递给父组件
         }
       },
       watch: {

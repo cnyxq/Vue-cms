@@ -23,7 +23,7 @@
                     <numbox @getSelectCount="getSelectCount" :stockQuantity="goodsInfo.stock_quantity"></numbox>
                     <div class="button">
                         <mt-button type="primary">立即购买</mt-button>
-                        <mt-button type="danger" @click="getSelectCount">加入购物车</mt-button>
+                        <mt-button type="danger" @click="addToShopCar">加入购物车</mt-button>
                     </div>
                 </div>
             </div>
@@ -83,8 +83,18 @@
           })
         },
         getSelectCount(count) {
-          this.selectCount = count
-          /*this.$store.commit('increment',this.selectCount)*/
+          if(typeof(count) === "number"){//这里如果判断类型，可能会赋值一个没有意义的形参对象
+            this.selectCount = count
+          }
+        },
+        addToShopCar() {
+          let goodsinfo = {
+            id: this.id,//商品Id
+            count: this.selectCount,//要购买的数量
+            price: this.goodsInfo.sell_price,//价格
+            selected: true//购物车中的商品是否处于要结算状态
+          }
+          this.$store.commit('addToCar',goodsinfo)
         },
         goGoodsDesc(id) {
           this.$router.push({name: 'goodsDesc',params: { id }})//程序化导航

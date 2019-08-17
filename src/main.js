@@ -36,22 +36,38 @@ import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
 //导入vuex
-/*import Vuex from 'vuex'
+import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {
-    count1: 0
+  state: {//相当于data，this.$store.state.***
+    shopCar: []
   },
-  mutations: {
-    increment(state,num) {
-      state.count += num
+  mutations: {//相当于methods, this.$store.commit('方法名称',参数)
+    addToCar(state,goodsinfo) {
+      let flag = false//判断是否有相同的商品加入购物车
+      state.shopCar.some(item => {//如果相同，则直接将对象中的数量累加，而不是添加新的对象
+        if(item.id === goodsinfo.id){
+          item.count += parseInt(goodsinfo.count)
+          flag = true
+          return true
+        }
+      })
+      if(!flag){
+        state.shopCar.unshift(goodsinfo)
+      }
     }
   },
-  getters: {
-
+  getters: {//相当于计算属性，也相当于filters，this.$store.getters.***
+    getAllCount(state) {
+      let allCount = 0
+      state.shopCar.forEach(item => {
+        allCount += item.count
+      })
+      return allCount
+    }
   }
-})*/
+})
 
 let vm = new Vue({
   el: '#app',
@@ -59,5 +75,6 @@ let vm = new Vue({
   render: function (createElement) {
     return createElement(app)
   },
-  router: routerObj
+  router: routerObj,
+  store
 })
