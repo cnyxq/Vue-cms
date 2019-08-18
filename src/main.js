@@ -41,7 +41,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {//相当于data，this.$store.state.***
-    shopCar: []
+    shopCar: JSON.parse(localStorage.getItem("shopCar") || "[]")
   },
   mutations: {//相当于methods, this.$store.commit('方法名称',参数)
     addToCar(state,goodsinfo) {
@@ -56,6 +56,7 @@ const store = new Vuex.Store({
       if(!flag){
         state.shopCar.unshift(goodsinfo)
       }
+      localStorage.setItem("shopCar",JSON.stringify(this.state.shopCar))//将购物车数据存储到本地
     }
   },
   getters: {//相当于计算属性，也相当于filters，this.$store.getters.***
