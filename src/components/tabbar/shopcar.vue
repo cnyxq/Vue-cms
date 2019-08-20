@@ -1,13 +1,13 @@
 <template>
     <div class="shopCar-container">
-        <div class="mui-card">
+        <div class="mui-card" v-for="(item,index) in shopCarList" :key="index">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <mt-switch></mt-switch>
-                    <img style="height: 60px;width: 60px;" src="../../images/img2.png" alt="">
+                    <img style="height: 60px;width: 60px;" :src="item.thumb_path" alt="">
                     <div class="content">
-                        <h1>大双买大沙发啊沙发上啊是大</h1>
-                        <p>￥2199</p>
+                        <h1>{{item.title}}</h1>
+                        <p>￥{{item.sell_price}}</p>
                         <shopCar-numbox></shopCar-numbox>
                         <a>删除</a>
                     </div>
@@ -27,13 +27,53 @@
 <script>
     import numbox from "../subcomponents/shopcar_numbox.vue"
     export default {
+      data() {
+        return {
+          shopCarList: []
+        }
+      },
+      created() {
+        this.getGoodsList()
+      },
+      methods: {
+        getGoodsList() {
+          let idArr = []
+          this.$store.state.shopCar.forEach(item => {
+            idArr.push(item.id)
+          })
+          if(idArr.length === 0){
+            return
+          }
+          this.axios.get("http://www.liulongbin.top:3005/api/goods/getshopcarlist/"+idArr.join()).then(result => {
+            this.shopCarList = result.data.message
+          })
+        }
+      },
       components: {
         "shopCar-numbox": numbox
       }
     }
 </script>
-<style>
+<style scoped>
+    .shopCar-container .mui-card-content-inner {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    .shopCar-container .mui-card-content-inner .mint-switch , .content , img{
+        float: left;
+        padding-left: 5px;
+    }
     .shopCar-container .content h1 {
         font-size: 13px;
+        margin: 10px 0;
+    }
+    .shopCar-container .content p {
+        display: inline;
+        color: red;
+
+    }
+    .shopCar-container .content .mui-numbox {
+        height: 25px;
     }
 </style>
