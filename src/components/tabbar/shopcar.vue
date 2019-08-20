@@ -9,7 +9,7 @@
                         <h1>{{item.title}}</h1>
                         <p>￥{{item.sell_price}}</p>
                         <shopCar-numbox></shopCar-numbox>
-                        <a>删除</a>
+                        <a>删除{{$store.getters.getGoodsCount[item.id]}}</a>
                     </div>
                 </div>
             </div>
