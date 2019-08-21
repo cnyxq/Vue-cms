@@ -8,17 +8,21 @@
                     <div class="content">
                         <h1>{{item.title}}</h1>
                         <p>￥{{item.sell_price}}</p>
-                        <shopCar-numbox></shopCar-numbox>
-                        <a>删除{{$store.getters.getGoodsCount[item.id]}}</a>
+                        <shopCar-numbox :id="item.id" :count="$store.getters.getGoodsCount[item.id]"></shopCar-numbox>
+                        <a @click.prevent="remove(item.id,index)">删除</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="mui-card">
+        <div class="mui-card mui-card-account">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
-                    这是一个最简单的卡片视图控件；卡片视图常用来显示完整独立的一段信息，比如一篇文章的预览图、作者信息、点赞数量等
+                    <div class="account">
+                        <p>总计（不含运费）</p>
+                        <p>已勾选商品0件，总价￥0</p>
+                    </div>
+                    <button type="button" class="mui-btn mui-btn-danger">去结算</button>
                 </div>
             </div>
         </div>
@@ -47,6 +51,10 @@
           this.axios.get("http://www.liulongbin.top:3005/api/goods/getshopcarlist/"+idArr.join()).then(result => {
             this.shopCarList = result.data.message
           })
+        },
+        remove(id,index) {
+          this.shopCarList.splice(index,1)//删除本地购物车数据
+          this.$store.commit("removeShopCarData",id)//删除数据源
         }
       },
       components: {
@@ -75,5 +83,9 @@
     }
     .shopCar-container .content .mui-numbox {
         height: 25px;
+    }
+    .shopCar-container .mui-card-account .mui-card-content-inner{
+        display: flex;
+        justify-content: space-between;
     }
 </style>

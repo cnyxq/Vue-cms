@@ -47,7 +47,7 @@ const store = new Vuex.Store({
     addToCar(state,goodsinfo) {
       let flag = false//判断是否有相同的商品加入购物车
       state.shopCar.some(item => {//如果相同，则直接将对象中的数量累加，而不是添加新的对象
-        if(item.id === goodsinfo.id){
+        if(item.id === goodsinfo.id){//这里不能转换成数值型
           item.count += parseInt(goodsinfo.count)
           flag = true
           return true
@@ -56,7 +56,25 @@ const store = new Vuex.Store({
       if(!flag){
         state.shopCar.unshift(goodsinfo)
       }
-      localStorage.setItem("shopCar",JSON.stringify(this.state.shopCar))//将购物车数据存储到本地
+      localStorage.setItem("shopCar",JSON.stringify(state.shopCar))//将购物车数据存储到本地
+    },
+    updateGoodsInfo(state,goodsinfo) {
+      state.shopCar.some(item => {
+        if(parseInt(item.id) === goodsinfo.id){
+          item.count = parseInt(goodsinfo.count)
+          return true
+        }
+      })
+      localStorage.setItem("shopCar",JSON.stringify(state.shopCar))
+    },
+    removeShopCarData(state,id) {
+      state.shopCar.some((item,index) => {
+        if(parseInt(item.id) === id){
+          state.shopCar.splice(index,1)
+          return true
+        }
+      })
+      localStorage.setItem("shopCar",JSON.stringify(state.shopCar))
     }
   },
   getters: {//相当于计算属性，也相当于filters，this.$store.getters.***
