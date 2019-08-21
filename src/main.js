@@ -75,6 +75,15 @@ const store = new Vuex.Store({
         }
       })
       localStorage.setItem("shopCar",JSON.stringify(state.shopCar))
+    },
+    updateGoodsSelected(state,obj) {
+      state.shopCar.some(item => {
+        if(parseInt(item.id) === obj.id){
+          item.selected = obj.selected
+          return true
+        }
+      })
+      localStorage.setItem("shopCar",JSON.stringify(state.shopCar))
     }
   },
   getters: {//相当于计算属性，也相当于filters，this.$store.getters.***
@@ -89,6 +98,26 @@ const store = new Vuex.Store({
       let obj = {}
       state.shopCar.forEach(item => {
         obj[item.id] = item.count
+      })
+      return obj
+    },
+    getGoodsSelected(state) {
+      let obj = {}
+      state.shopCar.forEach(item => {
+        obj[item.id] = item.selected
+      })
+      return obj
+    },
+    getGoodsCountAndAmount(state) {
+      let obj = {
+        count: 0, //勾选的总数量
+        amount: 0  //勾选的总价格
+      }
+      state.shopCar.forEach(item => {
+        if(item.selected){
+          obj.count += item.count
+          obj.amount += item.price * item.count
+        }
       })
       return obj
     }

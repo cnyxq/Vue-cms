@@ -3,7 +3,7 @@
         <div class="mui-card" v-for="(item,index) in shopCarList" :key="index">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
-                    <mt-switch></mt-switch>
+                    <mt-switch v-model="$store.getters.getGoodsSelected[item.id]" @change="goodsSelectChanged(item.id,$store.getters.getGoodsSelected[item.id])"></mt-switch>
                     <img style="height: 60px;width: 60px;" :src="item.thumb_path" alt="">
                     <div class="content">
                         <h1>{{item.title}}</h1>
@@ -20,7 +20,7 @@
                 <div class="mui-card-content-inner">
                     <div class="account">
                         <p>总计（不含运费）</p>
-                        <p>已勾选商品0件，总价￥0</p>
+                        <p>已勾选商品<span>{{$store.getters.getGoodsCountAndAmount.count}}</span>件，总价<span>￥{{$store.getters.getGoodsCountAndAmount.amount}}</span></p>
                     </div>
                     <button type="button" class="mui-btn mui-btn-danger">去结算</button>
                 </div>
@@ -55,6 +55,10 @@
         remove(id,index) {
           this.shopCarList.splice(index,1)//删除本地购物车数据
           this.$store.commit("removeShopCarData",id)//删除数据源
+        },
+        goodsSelectChanged(id,bool) {
+          console.log(id,bool)
+          this.$store.commit("updateGoodsSelected",{id: id,selected: bool})
         }
       },
       components: {
@@ -87,5 +91,9 @@
     .shopCar-container .mui-card-account .mui-card-content-inner{
         display: flex;
         justify-content: space-between;
+    }
+    .shopCar-container .mui-card-account .mui-card-content-inner p span {
+        color: red;
+        font-size: 15px;
     }
 </style>
